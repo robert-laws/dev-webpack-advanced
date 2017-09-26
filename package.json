@@ -1,0 +1,25 @@
+{
+  "name": "dev-webpack-advanced",
+  "version": "1.0.0",
+  "description": "webpack advanced features",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robert-laws/dev-webpack-advanced.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "Robert Laws",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robert-laws/dev-webpack-advanced/issues"
+  },
+  "homepage": "https://github.com/robert-laws/dev-webpack-advanced#readme",
+  "devDependencies": {
+    "webpack": "^3.6.0"
+  }
+}
