@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import 'jquery/dist/jquery.js'
+
 import 'materialize-css/dist/js/materialize.min.js'
 
 import 'materialize-css/dist/css/materialize.min.css'
