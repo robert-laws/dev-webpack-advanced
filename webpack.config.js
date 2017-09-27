@@ -76,6 +76,12 @@ module.exports = {
         'vendor',
         'manifest',
       ]
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      "Hammer": "hammerjs/hammer"
     })
   ]
 }
