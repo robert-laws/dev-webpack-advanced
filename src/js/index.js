@@ -28,7 +28,7 @@ function component() {
       module.default()
     })
 
-    System.import('./hello.js').then(module => {
+    System.import(/* webpackChunkName = "hello" */ './hello.js').then(module => {
       module.default();
     })
   }
