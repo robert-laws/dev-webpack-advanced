@@ -1,6 +1,11 @@
 import _ from 'lodash'
+import 'jquery/dist/jquery.js'
+import 'materialize-css/dist/js/materialize.min.js'
+
+import 'materialize-css/dist/css/materialize.min.css'
 import '../css/style.css'
 import '../scss/main.scss'
+
 // import hello from './hello'
 
 if(process.env.NODE_ENV !== 'production') {
@@ -36,3 +41,8 @@ function component() {
 
 document.body.appendChild(component())
 // hello()
+
+$(document).ready(function(){
+  // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+  $('.modal').modal();
+});

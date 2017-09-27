@@ -8,7 +8,8 @@ module.exports = {
   entry: {
     app: './src/js/index.js',
     vendor: [
-      'lodash'
+      'lodash',
+      'jquery'
     ]
   },
   output: {
@@ -41,6 +42,18 @@ module.exports = {
           fallback: 'style-loader',
           use: 'css-loader'
         })
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader'
+        ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader'
+        ]
       }
     ]
   },
@@ -60,6 +73,13 @@ module.exports = {
         'vendor',
         'manifest',
       ]
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      'window.jQuery': 'jquery',
+      "Hammer": "hammerjs/hammer"
     })
   ]
 }
