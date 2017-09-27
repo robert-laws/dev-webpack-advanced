@@ -2,16 +2,18 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: './src/js/index.js',
     vendor: [
       'lodash'
     ]
   },
   output: {
     filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'inline-source-map',
@@ -26,16 +28,23 @@ module.exports = {
           'babel-loader'
         ],
         include: [
-          path.resolve(__dirname, 'src')
+          path.resolve(__dirname, './src/js')
         ],
         exclude: [/node_modules/, /old_src/ ]
       },
       {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        }) 
+      },
+      {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
       }
     ]
   },
@@ -44,6 +53,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Code Splitting',
       template: './src/index.ejs'
+    }),
+    new ExtractTextPlugin({
+      filename: "styles.[contenthash].css"
     }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({

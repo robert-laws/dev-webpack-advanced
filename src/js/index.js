@@ -1,5 +1,7 @@
 import _ from 'lodash'
-import './style.css'
+import '../css/style.css'
+import '../scss/main.scss'
+// import hello from './hello'
 
 function component() {
   var element = document.createElement('div')
@@ -11,8 +13,12 @@ function component() {
 
   btn.innerHTML = 'Click here and check the console'
   btn.onclick = () => {
-    System.import('./print.js').then(module => {
+    System.import(/* webpackChunkName = "print" */ './print.js').then(module => {
       module.default()
+    })
+
+    System.import('./hello.js').then(module => {
+      module.default();
     })
   }
 
@@ -23,3 +29,4 @@ function component() {
 }
 
 document.body.appendChild(component())
+// hello()
