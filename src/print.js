@@ -1,3 +1,3 @@
-export default function printMe() {
-  console.log('called from print.js')
+export default () => {
+  console.log("printing module")
 }

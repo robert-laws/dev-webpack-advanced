@@ -6,10 +6,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
   entry: {
     app: './src/index.js',
-    second: './src/second-module.js'
+    vendor: [
+      'lodash'
+    ]
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'inline-source-map',
@@ -18,6 +20,16 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: [
+          'babel-loader'
+        ],
+        include: [
+          path.resolve(__dirname, 'src')
+        ],
+        exclude: [/node_modules/, /old_src/ ]
+      },
       {
         test: /\.css$/,
         use: [
@@ -30,10 +42,16 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Code Splitting'
+      title: 'Code Splitting',
+      template: './src/index.ejs'
     }),
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common'
+      names: [
+        'common',
+        'vendor',
+        'manifest',
+      ]
     })
   ]
 }
