@@ -3,6 +3,12 @@ import '../css/style.css'
 import '../scss/main.scss'
 // import hello from './hello'
 
+if(process.env.NODE_ENV !== 'production') {
+  console.log("development mode!")
+} else {
+  console.log("production mode!")
+}
+
 function component() {
   var element = document.createElement('div')
   var btn = document.createElement('button')
